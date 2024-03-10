@@ -30,9 +30,8 @@ phases:
       - echo 'export PATH=$PWD/:$PATH' >> $HOME/.bashrc
       - echo `kubectl version --short --client`
       - python -m pip install --upgrade --force pip
-      - sudo yum-config-manager --disable google-chrome
-      - sudo yum-config-manager --add-repo https://dl.google.com/linux/chrome/rpm/stable/x86_64
-      - sudo yum update
+      - wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+      - sudo apt-get update
       - apt-get update && apt-get -y install jq  && pip install --upgrade awscli
   pre_build:
       commands:
